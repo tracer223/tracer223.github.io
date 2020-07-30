@@ -5,7 +5,7 @@
   "dependencies": {
     "ajv": "^6.10.1",
     "bootstrap": "^4.1.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper": "^1.0.1",
     "react": "^16.8.6",
     "react-bootstrap": "^0.32.4",
