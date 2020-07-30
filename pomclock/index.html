@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="scripts.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+
+  <div id="pomodoro-app">
+    <h1>Pomodoro Clock</h1>
+    <!-- <div id="breakLength">
+    <h2>Break Length</h2>
+    <button type="button" class="btn btn-default" id="subtractBreakMinutes">-</button>
+    <h3 id="breakMinutes">10</h3>
+    <button type="button" class="btn btn-default" id="addBreakMinutes">+</button>
+  </div>
+
+  <div id="sessionLength">
+    <h2>Session Length</h2>
+    <button type="button" class="btn btn-default" id="subtractSessionMinutes">-</button>
+    <h3 id="sessionMinutes">25</h3>
+    <button type="button" class="btn btn-default" id="addSessionMinutes">+</button>
+  </div> -->
+
+    <div id="workTime">
+      <h2 id="timeHeader">Work Time</h2>
+      <button type="button" class="btn btn-default" id="subtractSessionMinutes">-</button>
+      <h3 id="sessionMinutes">25</h3>
+      <h3 id="colon">:</h3>
+      <h3 id="seconds">00</h3>
+      <button type="button" class="btn btn-default" id="addSessionMinutes">+</button>
+    </div>
+
+    <div id="breakTime">
+      <h2 id="breakTimeHeader">Break Time</h2>
+      <button type="button" class="btn btn-default" id="subtractBreakMinutes">-</button>
+      <h3 id="breakMinutes">10</h3>
+      <h3 id="colon">:</h3>
+      <h3 id="bSeconds">00</h3>
+      <button type="button" class="btn btn-default" id="addBreakMinutes">+</button>
+    </div>
+
+    <audio id="notification1">
+      <source src="https://www.myinstants.com/media/sounds/01-opening.mp3">
+      </source>
+    </audio>
+
+
+    <audio id="notification2">
+      <source src="https://www.myinstants.com/media/sounds/02-duck-hunt-intro.mp3">
+      </source>
+    </audio>
+
+    <div id="startButton">
+      <button type="button" class="btn btn-5" id="start">Start Work!</button>
+    </div>
+
+    <div id="breakButton">
+      <button type="button" class="btn btn-5" id="break">Start Break!</button>
+    </div>
+
+    <div id="resetButton">
+      <button type="button" class="btn btn-5" id="reset">Reset Timer</button>
+    </div>
+  </div>
+
+  <div class="footerInfo">
+    <footer>
+      <p>&copy <span style="color:white"> 2019 Josh Henderson</span></p>
+  </div>
+  </footer>
+
+</body>

@@ -1,0 +1,1203 @@
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+<div class="side-menu">
+  <nav id="navbar">
+    <header id="nav_header">Python Documentation <img id="logo" src="../images/pythonLogo.png" </img> </header> <a
+        href="#introduction_to_python" class="nav-link">Introduction to Python</a>
+      <a href="#using_the_python_interpreter" class="nav-link">Using the Python Interpreter</a>
+      <a href="#using_python_as_a_calculator" class="nav-link">Using Python as a calculator</a>
+      <a href="#control_flow_tools" class="nav-link">Control Flow Tools</a>
+      <a href="#data_structures" class="nav-link">Data Structures</a>
+      <a href="#modules" class="nav-link">Modules</a>
+      <a href="#input_and_output" class="nav-link">Input and Output</a>
+      <a href="#errors_and_exceptions" class="nav-link">Errors and Exceptions</a>
+      <a href="#classes" class="nav-link">Classes</a>
+      <a href="#tour_of_standard_library" class="nav-link">Tour of Standard Library</a>
+      <a href="#tour_of_standard_library_part_ii" class="nav-link">Tour of Standard Library part II</a>
+      <a href="#virtual_environments_and_packages" class="nav-link">Virtual Environments and Packages</a>
+      <a href="#what_now?" class="nav-link">What Now?</a>
+  </nav>
+</div>
+
+<main id="main-doc">
+  <section id="introduction_to_python" class="main-section">
+    <header id="main_doc_header">
+      Introduction to Python
+    </header>
+    <p>Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a
+      simple but effective approach to object-oriented programming. Python’s elegant syntax and dynamic typing, together
+      with its interpreted nature, make it an ideal language for scripting and rapid application development in many
+      areas on most platforms.</p>
+
+    <p>
+      The Python interpreter and the extensive standard library are freely available in source or binary form for all
+      major platforms from the Python Web site, https://www.python.org/, and may be freely distributed. The same site
+      also contains distributions of and pointers to many free third party Python modules, programs and tools, and
+      additional documentation.
+    </p>
+    <p>
+      The Python interpreter is easily extended with new functions and data types implemented in C or C++ (or other
+      languages callable from C). Python is also suitable as an extension language for customizable applications.
+    </p>
+    <p>
+      This tutorial introduces the reader informally to the basic concepts and features of the Python language and
+      system. It helps to have a Python interpreter handy for hands-on experience, but all examples are self-contained,
+      so the tutorial can be read off-line as well.
+    </p>
+    <p>
+      For a description of standard objects and modules, see The Python Standard Library. The Python Language Reference
+      gives a more formal definition of the language. To write extensions in C or C++, read Extending and Embedding the
+      Python Interpreter and Python/C API Reference Manual. There are also several books covering Python in depth.
+    </p>
+    <p>
+      This tutorial does not attempt to be comprehensive and cover every single feature, or even every commonly used
+      feature. Instead, it introduces many of Python’s most noteworthy features, and will give you a good idea of the
+      language’s flavor and style. After reading it, you will be able to read and write Python modules and programs, and
+      you will be ready to learn more about the various Python library modules described in The Python Standard Library.
+    </p>
+
+  </section>
+  <section id="using_the_python_interpreter" class="main-section">
+    <header id="main_doc_header">
+      Using the Python Interpreter
+    </header>
+    <h3>Invoking the Interpreter</h3>
+    <p>The Python interpreter is usually installed as /usr/local/bin/python3.7 on those machines where it is available;
+      putting /usr/local/bin in your Unix shell’s search path makes it possible to start it by typing the command:</p>
+
+    <code>python3.7</code>
+
+    <p>to the shell. [1] Since the choice of the directory where the interpreter lives is an installation option, other
+      places are possible; check with your local Python guru or system administrator. (E.g.,
+      <code>/usr/local/python</code> is a popular alternative location.)</p>
+
+    <p>On Windows machines, the Python installation is usually placed in <code>C:\Python36</code>, though you can change
+      this when you’re running the installer. To add this directory to your path, you can type the following command
+      into the command prompt in a DOS box:</p>
+
+    <code>set path=%path%;C:\python36</code>
+
+    <p>Typing an end-of-file character (<code>Control-D</code> on Unix, <code>Control-Z</code> on Windows) at the
+      primary prompt causes the interpreter to exit with a zero exit status. If that doesn’t work, you can exit the
+      interpreter by typing the following command: <code>quit()</code>.</p>
+
+
+    <p>The interpreter’s line-editing features include interactive editing, history substitution and code completion on
+      systems that support readline. Perhaps the quickest check to see whether command line editing is supported is
+      typing <code>Control-P</code> to the first Python prompt you get. If it beeps, you have command line editing; see
+      Appendix Interactive Input Editing and History Substitution for an introduction to the keys. If nothing appears to
+      happen, or if <code>^P</code> is echoed, command line editing isn’t available; you’ll only be able to use
+      backspace to remove characters from the current line.</p>
+
+    <p>The interpreter operates somewhat like the Unix shell: when called with standard input connected to a tty device,
+      it reads and executes commands interactively; when called with a file name argument or with a file as standard
+      input, it reads and executes a script from that file.</p>
+
+    <p>A second way of starting the interpreter is <code>python -c command [arg] ...</code>, which executes the
+      statement(s) in command, analogous to the shell’s -c option. Since Python statements often contain spaces or other
+      characters that are special to the shell, it is usually advised to quote command in its entirety with single
+      quotes.</p>
+
+    <p>Some Python modules are also useful as scripts. These can be invoked using <code>python -m module [arg]
+        ...</code>, which executes the source file for module as if you had spelled out its full name on the command
+      line.</p>
+
+    <p>When a script file is used, it is sometimes useful to be able to run the script and enter interactive mode
+      afterwards. This can be done by passing <code>-i</code> before the script.</p>
+
+    <p>All command line options are described in Command line and environment.</p>
+
+    <h3>Argument Passing</h3>
+
+    <p>When known to the interpreter, the script name and additional arguments thereafter are turned into a list of
+      strings and assigned to the <code>argv</code> variable in the <code>sys</code> module. You can access this list by
+      executing <code>import sys</code>. The length of the list is at least one; when no script and no arguments are
+      given, <code>sys.argv[0]</code> is an empty string. When the script name is given as <code>'-'</code> (meaning
+      standard input), <code>sys.argv[0]</code> is set to <code>'-'</code>. When <code>-c</code> command is used,
+      <code>sys.argv[0]</code> is set to <code>'-c'</code>. When <code>-m</code> module is used,
+      <code>sys.argv[0]</code> is set to the full name of the located module. Options found after <code>-c</code>
+      command or <code>-m</code> module are not consumed by the Python interpreter’s option processing but left in
+      <code>sys.argv</code> for the command or module to handle.</p>
+
+    <h3>Interactive Mode</h3>
+
+    <p>When commands are read from a tty, the interpreter is said to be in interactive mode. In this mode it prompts for
+      the next command with the primary prompt, usually three greater-than signs (<code>>>></code>); for continuation
+      lines it prompts with the secondary prompt, by default three dots (<code>...</code>). The interpreter prints a
+      welcome message stating its version number and a copyright notice before printing the first prompt:</p>
+
+    <code>$ python3.7 </br>
+      Python 3.7 (default, Sep 16 2015, 09:25:04)</br>
+      [GCC 4.8.2] on linux </br>
+      Type "help", "copyright", "credits" or "license" for more information. </br>
+      >>></code>
+
+    <p>Continuation lines are needed when entering a multi-line construct. As an example, take a look at this
+      <code>if</code> statement:</p>
+
+    <code>>>> the_world_is_flat = True </br>
+      >> if the_world_is_flat: </br>
+      ... print("Be careful not to fall off!")</br>
+      ...</br>
+      Be careful not to fall off!</code>
+
+    <h3>The Interpreter and Its Environment</h3>
+
+    <p>By default, Python source files are treated as encoded in UTF-8. In that encoding, characters of most languages
+      in the world can be used simultaneously in string literals, identifiers and comments — although the standard
+      library only uses ASCII characters for identifiers, a convention that any portable code should follow. To display
+      all these characters properly, your editor must recognize that the file is UTF-8, and it must use a font that
+      supports all the characters in the file.</p>
+
+    <p>To declare an encoding other than the default one, a special comment line should be added as the first line of
+      the file. The syntax is as follows:</p>
+
+    <code># -*- coding: encoding -*-</code>
+
+    <p>where encoding is one of the valid codecs supported by Python.</p>
+
+    <p>For example, to declare that Windows-1252 encoding is to be used, the first line of your source code file should
+      be:</p>
+
+    <code># -*- coding: cp1252 -*-</code>
+
+    <p>One exception to the first line rule is when the source code starts with a UNIX “shebang” line. In this case, the
+      encoding declaration should be added as the second line of the file. For example:</p>
+
+    <code>#!/usr/bin/env python3 </br>
+      # -*- coding: cp1252 -*-</code>
+  </section>
+
+  <section id="using_python_as_a_calculator" class="main-section">
+    <header id="main_doc_header">
+      Using Python as a calculator
+    </header>
+    <p>In the following examples, input and output are distinguished by the presence or absence of prompts
+      (<code>>></code> and <code>…</code>): to repeat the example, you must type everything after the prompt, when the
+      prompt appears; lines that do not begin with a prompt are output from the interpreter. Note that a secondary
+      prompt on a line by itself in an example means you must type a blank line; this is used to end a multi-line
+      command.</p>
+
+    <p>Many of the examples in this manual, even those entered at the interactive prompt, include comments. Comments in
+      Python start with the hash character, <code>#</code>, and extend to the end of the physical line. A comment may
+      appear at the start of a line or following whitespace or code, but not within a string literal. A hash character
+      within a string literal is just a hash character. Since comments are to clarify code and are not interpreted by
+      Python, they may be omitted when typing in examples.</p>
+
+    <p>Some examples:</p>
+
+    <code># this is the first comment </br>
+      spam = 1 # and this is the second comment </br>
+      # ... and now a third! </br>
+      text = "# This is not a comment because it's inside quotes."</code>
+
+    <p>Let’s try some simple Python commands. Start the interpreter and wait for the primary prompt, <code>>></code>.
+      (It shouldn’t take long.)</p>
+
+    <h3>Numbers</h3>
+
+    <p>The interpreter acts as a simple calculator: you can type an expression at it and it will write the value.
+      Expression syntax is straightforward: the operators <code>+</code>, <code>-</code>, <code>*</code> and
+      <code>/</code> work just like in most other languages (for example, Pascal or C); parentheses (<code>()</code>)
+      can be used for grouping. For example:</p>
+
+    <code>>>> 2 + 2 </br>
+      4 </br>
+      >>> 50 - 5*6 </br>
+      20 </br>
+      >>> (50 - 5*6) / 4 </br>
+      5.0 </br>
+      >>> 8 / 5 # division always returns a floating point number </br>
+      1.6</code>
+
+    <p>The integer numbers (e.g. <code>2</code>, <code>4</code>, <code>20</code>) have type <code>int</code>, the ones
+      with a fractional part (e.g. <code>5.0</code>, <code>1.6</code>) have type <code>float</code>. We will see more
+      about numeric types later in the tutorial.</p>
+
+    <p>Division (<code>/</code>) always returns a <code>float</code>. To do floor division and get an integer result
+      (discarding any fractional result) you can use the <code>//</code> operator; to calculate the remainder you can
+      use <code>%</code>:</p>
+
+    <code>>>> 17 / 3 # classic division returns a float </br>
+      5.666666666666667 </br>
+      >>> </br>
+      >>> 17 // 3 # floor division discards the fractional part </br>
+      5 </br>
+      >>> 17 % 3 # the % operator returns the remainder of the division </br>
+      2 </br>
+      >>> 5 * 3 + 2 # result * divisor + remainder </br>
+      17</code>
+
+    <p>With Python, it is possible to use the ** operator to calculate powers:</p>
+
+    <code>>>> 5 ** 2 # 5 squared </br>
+      25 </br>
+      >>> 2 ** 7 # 2 to the power of 7 </br>
+      128</code>
+
+    <p>The equal sign (<code>=</code>) is used to assign a value to a variable. Afterwards, no result is displayed
+      before the next interactive prompt:</p>
+
+    <code>>>> width = 20 </br>
+      >>> height = 5 * 9 </br>
+      >>> width * height </br>
+      900</code>
+
+    <p>If a variable is not “defined” (assigned a value), trying to use it will give you an error:</p>
+
+    <code>>>> n # try to access an undefined variable </br>
+      Traceback (most recent call last): </br>
+      File "&lt;stdin&gt;", line 1, in &lt;module&gt; </br>
+      NameError: name 'n' is not defined</code>
+
+    <p>There is full support for floating point; operators with mixed type operands convert the integer operand to
+      floating point:</p>
+
+    <code>>>> 4 * 3.75 - 1 </br>
+      14.0</code>
+
+    <p>In interactive mode, the last printed expression is assigned to the variable <code>_</code>. This means that when
+      you are using Python as a desk calculator, it is somewhat easier to continue calculations, for example:</p>
+
+    <code>>>> tax = 12.5 / 100 </br>
+      >>> price = 100.50 </br>
+      >>> price * tax </br>
+      12.5625 </br>
+      >>> price + _ </br>
+      113.0625 </br>
+      >>> round(_, 2) </br>
+      113.06</code>
+
+    <p>This variable should be treated as read-only by the user. Don’t explicitly assign a value to it — you would
+      create an independent local variable with the same name masking the built-in variable with its magic behavior.</p>
+
+    <p>In addition to <code>int</code> and <code>float</code>, Python supports other types of numbers, such as
+      <code>Decimal</code> and <code>Fraction</code>. Python also has built-in support for complex numbers, and uses the
+      j or J suffix to indicate the imaginary part (e.g. 3+5j).</p>
+
+    <h3>Strings</h3>
+
+    <p>Besides numbers, Python can also manipulate strings, which can be expressed in several ways. They can be enclosed
+      in single quotes (<code>'...'</code>) or double quotes (<code>"..."</code>) with the same result. <code>\</code>
+      can be used to escape quotes:</p>
+
+    <code>>>> 'spam eggs' # single quotes </br>
+      'spam eggs' </br>
+      >>> 'doesn\'t' # use \' to escape the single quote...</br>
+      "doesn't"</br>
+      >>> "doesn't" # ...or use double quotes instead</br>
+      "doesn't"</br>
+      >>> '"Yes," they said.'</br>
+      '"Yes," they said.'</br>
+      >>> "\"Yes,\" they said."</br>
+      '"Yes," they said.'</br>
+      >>> '"Isn\'t," they said.'</br>
+      '"Isn\'t," they said.'</code>
+
+    <p>In the interactive interpreter, the output string is enclosed in quotes and special characters are escaped with
+      backslashes. While this might sometimes look different from the input (the enclosing quotes could change), the two
+      strings are equivalent. The string is enclosed in double quotes if the string contains a single quote and no
+      double quotes, otherwise it is enclosed in single quotes. The <code>print()</code> function produces a more
+      readable output, by omitting the enclosing quotes and by printing escaped and special characters:</p>
+
+    <code>>>> '"Isn\'t," they said.'</br>
+      '"Isn\'t," they said.'</br>
+      >>> print('"Isn\'t," they said.')</br>
+      "Isn't," they said.</br>
+      >>> s = 'First line.\nSecond line.' # \n means newline</br>
+      >>> s # without print(), \n is included in the output</br>
+      'First line.\nSecond line.'</br>
+      >>> print(s) # with print(), \n produces a new line</br>
+      First line.</br>
+      Second line.</code>
+
+    <p>If you don’t want characters prefaced by <code>\</code> to be interpreted as special characters, you can use raw
+      strings by adding an <code>r</code> before the first quote:</p>
+
+    <code>>>> print('C:\some\name') # here \n means newline! </br>
+      C:\some </br>
+      ame </br>
+      >>> print(r'C:\some\name') # note the r before the quote</br>
+      C:\some\name</code>
+
+    <p>String literals can span multiple lines. One way is using triple-quotes: <code>"""..."""</code> or
+      <code>'''...'''</code>. End of lines are automatically included in the string, but it’s possible to prevent this
+      by adding a <code>\</code> at the end of the line. The following example:</p>
+
+    <code>print("""\ </br>
+      Usage: thingy [OPTIONS]</br>
+      -h Display this usage message</br>
+      -H hostname Hostname to connect to</br>
+      """)</code>
+
+    <p>produces the following output (note that the initial newline is not included):</p>
+
+    <code>Usage: thingy [OPTIONS]</br>
+      -h Display this usage message</br>
+      -H hostname Hostname to connect to</code>
+
+    <p>Strings can be concatenated (glued together) with the + operator, and repeated with <code>*</code>:</p>
+
+    <code>>>> # 3 times 'un', followed by 'ium'</br>
+      >>> 3 * 'un' + 'ium'</br>
+      'unununium'</code>
+
+    <p>Two or more string literals (i.e. the ones enclosed between quotes) next to each other are automatically
+      concatenated.</p>
+
+    <code>>>> 'Py' 'thon'</br>
+      'Python'</code>
+
+    <p>This feature is particularly useful when you want to break long strings:</p>
+
+    <code>>>> text = ('Put several strings within parentheses '</br>
+      ... 'to have them joined together.')</br>
+      >>> text</br>
+      'Put several strings within parentheses to have them joined together.'</code>
+
+    <p>This only works with two literals though, not with variables or expressions:</p>
+
+    <code>>>> prefix = 'Py'</br>
+      >>> prefix 'thon' # can't concatenate a variable and a string literal</br>
+      ...</br>
+      SyntaxError: invalid syntax</br>
+      >>> ('un' * 3) 'ium'</br>
+      ...</br>
+      SyntaxError: invalid syntax</code>
+
+    <p>If you want to concatenate variables or a variable and a literal, use <code>+</code>:</p>
+
+    <code>>>> prefix + 'thon'</br>
+      'Python'</code>
+
+    <p>Strings can be indexed (subscripted), with the first character having index 0. There is no separate character
+      type; a character is simply a string of size one:</p>
+
+    <code>>>> word = 'Python' </br>
+      >>> word[0] # character in position 0</br>
+      'P'</br>
+      >>> word[5] # character in position 5</br>
+      'n'</code>
+
+    <p>Indices may also be negative numbers, to start counting from the right:</p>
+
+    <code>>>> word[-1] # last character</br>
+      'n'</br>
+      >>> word[-2] # second-last character</br>
+      'o'</br>
+      >>> word[-6]</br>
+      'P'</code>
+
+    <p>Note that since -0 is the same as 0, negative indices start from -1.
+
+      In addition to indexing, slicing is also supported. While indexing is used to obtain individual characters,
+      slicing allows you to obtain substring:</p>
+
+    <code>>>> word[0:2] # characters from position 0 (included) to 2 (excluded)</br>
+      'Py'</br>
+      >>> word[2:5] # characters from position 2 (included) to 5 (excluded)</br>
+      'tho'</code>
+
+    <p>Note how the start is always included, and the end always excluded. This makes sure that <code>s[:i] +
+        s[i:]</code> is always equal to <code>s</code>:</p>
+
+    <code>>>> word[:2] + word[2:]</br>
+      'Python'</br>
+      >>> word[:4] + word[4:]</br>
+      'Python'</code>
+
+    <p>Slice indices have useful defaults; an omitted first index defaults to zero, an omitted second index defaults to
+      the size of the string being sliced.</p>
+
+    <code>>>> word[:2] # character from the beginning to position 2 (excluded)</br>
+      'Py'</br>
+      >>> word[4:] # characters from position 4 (included) to the end</br>
+      'on'</br>
+      >>> word[-2:] # characters from the second-last (included) to the end</br>
+      'on'</code>
+
+    <p>One way to remember how slices work is to think of the indices as pointing between characters, with the left edge
+      of the first character numbered 0. Then the right edge of the last character of a string of n characters has index
+      n, for example:</p>
+
+    <code> +---+---+---+---+---+---+</br>
+      | P | y | t | h | o | n |</br>
+      +---+---+---+---+---+---+</br>
+      0 1 2 3 4 5 6</br>
+      -6 -5 -4 -3 -2 -1</code>
+
+    <p>The first row of numbers gives the position of the indices 0…6 in the string; the second row gives the
+      corresponding negative indices. The slice from i to j consists of all characters between the edges labeled i and
+      j, respectively.
+
+      For non-negative indices, the length of a slice is the difference of the indices, if both are within bounds. For
+      example, the length of <code>word[1:3]</code> is 2.
+
+      Attempting to use an index that is too large will result in an error:</p>
+
+    <code>>>> word[42] # the word only has 6 characters</br>
+      Traceback (most recent call last):</br>
+      File "&lt;stdin&gt;", line 1, in &lt;module&gt;</br>
+      IndexError: string index out of range</code>
+
+    <p>However, out of range slice indexes are handled gracefully when used for slicing:</p>
+
+    <code>>>> word[4:42]</br>
+      'on'</br>
+      >>> word[42:]</br>
+      ''</code>
+
+    <p>Python strings cannot be changed — they are immutable. Therefore, assigning to an indexed position in the string
+      results in an error:</p>
+
+    <code>>>> word[0] = 'J'</br>
+      ...</br>
+      TypeError: 'str' object does not support item assignment</br>
+      >>> word[2:] = 'py'</br>
+      ...</br>
+      TypeError: 'str' object does not support item assignment</code>
+
+    <p>If you need a different string, you should create a new one:</p>
+
+    <code>>>> 'J' + word[1:]</br>
+      'Jython'</br>
+      >>> word[:2] + 'py'</br>
+      'Pypy'</code>
+
+    <p>The built-in function <code>len()</code> returns the length of a string:</p>
+
+    <code>>>> s = 'supercalifragilisticexpialidocious'</br>
+      >>> len(s)</br>
+      34</code>
+
+    <h3>Lists</h3>
+
+    <p>Python knows a number of compound data types, used to group together other values. The most versatile is the
+      list, which can be written as a list of comma-separated values (items) between square brackets. Lists might
+      contain items of different types, but usually the items all have the same type.</p>
+
+    <code>>>> squares = [1, 4, 9, 16, 25]</br>
+      >>> squares</br>
+      [1, 4, 9, 16, 25]</code>
+
+    <p>Like strings (and all other built-in sequence type), lists can be indexed and sliced:</p>
+
+    <code>>>> squares[0] # indexing returns the item</br>
+      1</br>
+      >>> squares[-1]</br>
+      25</br>
+      >>> squares[-3:] # slicing returns a new list</br>
+      [9, 16, 25]</code>
+
+    <p>All slice operations return a new list containing the requested elements. This means that the following slice
+      returns a new (shallow) copy of the list:</p>
+
+    <code>>>> squares[:]</br>
+      [1, 4, 9, 16, 25]</code>
+
+    <p>Lists also support operations like concatenation:</p>
+
+    <code>>>> squares + [36, 49, 64, 81, 100]
+      [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</code>
+
+    <p>Unlike strings, which are immutable, lists are a mutable type, i.e. it is possible to change their content:</p>
+
+    <code>>>> cubes = [1, 8, 27, 65, 125] # something's wrong here</br>
+      >>> 4 ** 3 # the cube of 4 is 64, not 65!</br>
+      64</br>
+      >>> cubes[3] = 64 # replace the wrong value</br>
+      >>> cubes</br>
+      [1, 8, 27, 64, 125]</code>
+
+    <p>You can also add new items at the end of the list, by using the <code>append()</code> method (we will see more
+      about methods later):</p>
+
+    <code>>>> cubes.append(216) # add the cube of 6</br>
+      >>> cubes.append(7 ** 3) # and the cube of 7</br>
+      >>> cubes</br>
+      [1, 8, 27, 64, 125, 216, 343]</code>
+
+    <p>Assignment to slices is also possible, and this can even change the size of the list or clear it entirely:</p>
+
+    <code>>>> letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']</br>
+      >>> letters</br>
+      ['a', 'b', 'c', 'd', 'e', 'f', 'g']</br>
+      >>> # replace some values</br>
+      >>> letters[2:5] = ['C', 'D', 'E']</br>
+      >>> letters</br>
+      ['a', 'b', 'C', 'D', 'E', 'f', 'g']</br>
+      >>> # now remove them</br>
+      >>> letters[2:5] = []</br>
+      >>> letters</br>
+      ['a', 'b', 'f', 'g']</br>
+      >>> # clear the list by replacing all the elements with an empty list</br>
+      >>> letters[:] = []</br>
+      >>> letters
+      []</code>
+
+    <p>The built-in function <code>len()</code> also applies to lists:</p>
+
+    <code>>>> letters = ['a', 'b', 'c', 'd']</br>
+      >>> len(letters)</br>
+      4</code>
+
+    <p>It is possible to nest lists (create lists containing other lists), for example:</p>
+
+    <code>>>> a = ['a', 'b', 'c']</br>
+      >>> n = [1, 2, 3]</br>
+      >>> x = [a, n]</br>
+      >>> x</br>
+      [['a', 'b', 'c'], [1, 2, 3]]</br>
+      >>> x[0]</br>
+      ['a', 'b', 'c']</br>
+      >>> x[0][1]</br>
+      'b'</code>
+  </section>
+
+  <section id="control_flow_tools" class="main-section">
+    <header id="main_doc_header">
+      Control Flow Tools
+    </header>
+
+    <h3> <code>if</code> Statements </h3>
+
+    <p>Perhaps the most well-known statement type is the <code>if</code> statement. For example:</p>
+
+    <code>>>> x = int(input("Please enter an integer: "))</br>
+      Please enter an integer: 42</br>
+      >>> if x < 0:</br> ... x=0</br> ... print('Negative changed to zero')</br> ... elif x==0:</br> ...
+        print('Zero')</br> ... elif x==1:</br> ... print('Single')</br> ... else:</br> ... print('More')</br> ...</br>
+        More</code> <p>There can be zero or more elif parts, and the else part is optional. The keyword
+        ‘<code>elif</code>’ is short for ‘<code>else if</code>’, and is useful to avoid excessive indentation. An
+        <code>if … elif … elif …</code> sequence is a substitute for the switch or case statements found in other
+        languages.</p>
+
+        <h3><code>for</code> Statements</h3>
+
+        <p>
+          <li>The <code>for</code> statement in Python differs a bit from what you may be used to in C or Pascal. Rather
+            than always iterating over an arithmetic progression of numbers (like in Pascal), or giving the user the
+            ability to define both the iteration step and halting condition (as C), Python’s <code>for</code> statement
+            iterates over the items of any sequence (a list or a string), in the order that they appear in the sequence.
+            For example (no pun intended):</li>
+        </p>
+
+        <code>>>> # Measure some strings:</br>
+          ... words = ['cat', 'window', 'defenestrate']</br>
+          >>> for w in words:</br>
+          ... print(w, len(w))</br>
+          ...</br>
+          cat 3</br>
+          window 6</br>
+          defenestrate 12</code>
+
+        <p>If you need to modify the sequence you are iterating over while inside the loop (for example to duplicate
+          selected items), it is recommended that you first make a copy. Iterating over a sequence does not implicitly
+          make a copy. The slice notation makes this especially convenient:</p>
+
+        <code>>>> for w in words[:]: # Loop over a slice copy of the entire list.</br>
+          ... if len(w) > 6:</br>
+          ... words.insert(0, w)</br>
+          ...</br>
+          >>> words</br>
+          ['defenestrate', 'cat', 'window', 'defenestrate']</code>
+
+        <p>With <code>for w in words</code>:, the example would attempt to create an infinite list, inserting
+          defenestrate over and over again.</p>
+  </section>
+
+  <section id="data_structures" class="main-section">
+    <header id="main_doc_header">
+      Data Structures
+    </header>
+    <h3>Using Lists as Stacks</h3>
+    <p>The list methods make it very easy to use a list as a stack, where the last element added is the first element
+      retrieved (“last-in, first-out”). To add an item to the top of the stack, use <code>append()</code>. To retrieve
+      an item from the top of the stack, use <code>pop()</code> without an explicit index. For example:</p>
+
+    <code>>>> stack = [3, 4, 5]</br>
+      >>> stack.append(6)</br>
+      >>> stack.append(7)</br>
+      >>> stack</br>
+      [3, 4, 5, 6, 7]</br>
+      >>> stack.pop()</br>
+      7</br>
+      >>> stack</br>
+      [3, 4, 5, 6]</br>
+      >>> stack.pop()</br>
+      6</br>
+      >>> stack.pop()</br>
+      5</br>
+      >>> stack</br>
+      [3, 4]</code>
+
+    <h3>Using Lists as Queues</h3>
+
+    <p>
+      <li>It is also possible to use a list as a queue, where the first element added is the first element retrieved
+        (“first-in, first-out”); however, lists are not efficient for this purpose. While appends and pops from the end
+        of list are fast, doing inserts or pops from the beginning of a list is slow (because all of the other elements
+        have to be shifted by one).</li>
+    </p>
+
+    <p>
+      <li>To implement a queue, use <code>collections.deque</code> which was designed to have fast appends and pops from
+        both ends. For example:</li>
+    </p>
+
+    <code>>>> from collections import deque</br>
+      >>> queue = deque(["Eric", "John", "Michael"])</br>
+      >>> queue.append("Terry") # Terry arrives</br>
+      >>> queue.append("Graham") # Graham arrives</br>
+      >>> queue.popleft() # The first to arrive now leaves</br>
+      'Eric'</br>
+      >>> queue.popleft() # The second to arrive now leaves</br>
+      'John'</br>
+      >>> queue # Remaining queue in order of arrival</br>
+      deque(['Michael', 'Terry', 'Graham'])</code>
+  </section>
+
+  <section id="modules" class="main-section">
+    <header id="main_doc_header">
+      Modules
+    </header>
+    <p>
+      <li>If you quit from the Python interpreter and enter it again, the definitions you have made (functions and
+        variables) are lost. Therefore, if you want to write a somewhat longer program, you are better off using a text
+        editor to prepare the input for the interpreter and running it with that file as input instead. This is known as
+        creating a script. As your program gets longer, you may want to split it into several files for easier
+        maintenance. You may also want to use a handy function that you’ve written in several programs without copying
+        its definition into each program.</li>
+    </p>
+
+    <p>
+      <li>To support this, Python has a way to put definitions in a file and use them in a script or in an interactive
+        instance of the interpreter. Such a file is called a module; definitions from a module can be imported into
+        other modules or into the main module (the collection of variables that you have access to in a script executed
+        at the top level and in calculator mode).</li>
+    </p>
+
+    <p> <code>module</code> is a file containing Python definitions and statements. The file name is the module name
+      with the suffix <code>.py</code> appended. Within a module, the module’s name (as a string) is available as the
+      value of the global variable <code>__name__</code>. For instance, use your favorite text editor to create a file
+      called <code>fibo.py</code> in the current directory with the following contents:</p>
+
+    <code># Fibonacci numbers module</br>
+
+      def fib(n): # write Fibonacci series up to n</br>
+      a, b = 0, 1</br>
+      while a < n:</br> print(a, end=' ' )</br> a, b=b, a+b</br> print()</br> def fib2(n): # return Fibonacci series up
+        to n</br> result=[]</br> a, b=0, 1</br> while a < n:</br> result.append(a)</br> a, b=b, a+b</br> return
+        result</code> <p>Now enter the Python interpreter and import this module with the following command:</p>
+
+        <code>>>> import fibo</code>
+
+        <p>This does not enter the names of the functions defined in <code>fibo</code> directly in the current symbol
+          table; it only enters the module name <code>fibo</code> there. Using the module name you can access the
+          functions:</p>
+
+        <code>>>> fibo.fib(1000)</br>
+          0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987</br>
+          >>> fibo.fib2(100)</br>
+          [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]</br>
+          >>> fibo.__name__</br>
+          'fibo'</code>
+
+        <p>If you intend to use a function often you can assign it to a local name:</p>
+
+        <code>>>> fib = fibo.fib</br>
+          >>> fib(500)</br>
+          0 1 1 2 3 5 8 13 21 34 55 89 144 233 377</code>
+
+        <h3>Fancier Output Formatting</h3>
+
+        <p>So far we’ve encountered two ways of writing values: expression statements and the <code>print()</code>
+          function. (A third way is using the <code>write()</code> method of file objects; the standard output file can
+          be referenced as <code>sys.stdout.</code>)</p>
+
+        <p>Often you’ll want more control over the formatting of your output than simply printing space-separated
+          values. There are several ways to format output.</p>
+
+        <p>
+          <li>To use formatted string literals, begin a string with <code>f</code> or <code>F</code> before the opening
+            quotation mark or triple quotation mark. Inside this string, you can write a Python expression between
+            <code>{</code> and <code>}</code> characters that can refer to variables or literal values.</li>
+        </p>
+
+        <code>>>> year = 2016 ; event = 'Referendum'</br>
+          >>> f'Results of the {year} {event}'</br>
+          'Results of the 2016 Referendum'</code>
+
+        <p>
+          <li>The <code>str.format()</code> method of strings requires more manual effort. You’ll still use
+            <code>{</code> and <code>}</code> to mark where a variable will be substituted and can provide detailed
+            formatting directives, but you’ll also need to provide the information to be formatted.</li>
+        </p>
+
+        <code>>>> yes_votes = 42_572_654 ; no_votes = 43_132_495</br>
+          >>> percentage = yes_votes/(yes_votes+no_votes)</br>
+          >>> '{:-9} YES votes {:2.2%}'.format(yes_votes, percentage)</br>
+          ' 42572654 YES votes 49.67%'</code>
+
+        <p>
+          <li>Finally, you can do all the string handling yourself by using string slicing and concatenation operations
+            to create any layout you can imagine. The string type has some methods that perform useful operations for
+            padding strings to a given column width.</li>
+        </p>
+
+        <p>When you don’t need fancy output but just want a quick display of some variables for debugging purposes, you
+          can convert any value to a string with the <code>repr()</code> or <code>str()</code> functions.</p>
+  </section>
+
+  <section id="input_and_output" class="main-section">
+    <header id="main_doc_header">
+      Input and Output
+    </header>
+
+    <h3>Fancier Output Formatting</h3>
+
+    <p>So far we’ve encountered two ways of writing values: expression statements and the <code>print()</code> function.
+      (A third way is using the <code>write()</code> method of file objects; the standard output file can be referenced
+      as <code>sys.stdout</code>. See the Library Reference for more information on this.)</p>
+
+    <p>Often you’ll want more control over the formatting of your output than simply printing space-separated values.
+      There are several ways to format output.</p>
+
+    <p>
+      <li>To use formatted string literals, begin a string with <code>f</code> or <code>F</code> before the opening
+        quotation mark or triple quotation mark. Inside this string, you can write a Python expression between
+        <code>{</code> and <code>}</code> characters that can refer to variables or literal values.</li>
+    </p>
+
+    <code>>>> year = 2016 ; event = 'Referendum'</br>
+      >>> f'Results of the {year} {event}'</br>
+      'Results of the 2016 Referendum'</code>
+
+    <p>
+      <li>The <code>str.format()</code> method of strings requires more manual effort. You’ll still use <code>{</code>
+        and <code>}</code> to mark where a variable will be substituted and can provide detailed formatting directives,
+        but you’ll also need to provide the information to be formatted.</li>
+    </p>
+
+    <code>>>> yes_votes = 42_572_654 ; no_votes = 43_132_495</br>
+      >>> percentage = yes_votes/(yes_votes+no_votes)</br>
+      >>> '{:-9} YES votes {:2.2%}'.format(yes_votes, percentage)</br>
+      ' 42572654 YES votes 49.67%'</code>
+
+    <p>
+      <li>Finally, you can do all the string handling yourself by using string slicing and concatenation operations to
+        create any layout you can imagine. The string type has some methods that perform useful operations for padding
+        strings to a given column width.</li>
+    </p>
+
+    <p>When you don’t need fancy output but just want a quick display of some variables for debugging purposes, you can
+      convert any value to a string with the repr() or str() functions.
+
+      The <code>str()</code> function is meant to return representations of values which are fairly human-readable,
+      while <code>repr()</code> is meant to generate representations which can be read by the interpreter (or will force
+      a SyntaxError if there is no equivalent syntax). For objects which don’t have a particular representation for
+      human consumption, <code>str()</code> will return the same value as <code>repr()</code>. Many values, such as
+      numbers or structures like lists and dictionaries, have the same representation using either function. Strings, in
+      particular, have two distinct representations.</p>
+
+    <p>Some examples:</p>
+
+    <code>>>> s = 'Hello, world.'</br>
+      >>> str(s)</br>
+      'Hello, world.'</br>
+      >>> repr(s)</br>
+      "'Hello, world.'"</br>
+      >>> str(1/7)</br>
+      '0.14285714285714285'</br>
+      >>> x = 10 * 3.25</br>
+      >>> y = 200 * 200</br>
+      >>> s = 'The value of x is ' + repr(x) + ', and y is ' + repr(y) + '...'</br>
+      >>> print(s)</br>
+      The value of x is 32.5, and y is 40000...</br>
+      >>> # The repr() of a string adds string quotes and backslashes:</br>
+      ... hello = 'hello, world\n'</br>
+      >>> hellos = repr(hello)</br>
+      >>> print(hellos)</br>
+      'hello, world\n'</br>
+      >>> # The argument to repr() may be any Python object:</br>
+      ... repr((x, y, ('spam', 'eggs')))</br>
+      "(32.5, 40000, ('spam', 'eggs'))"</code>
+
+    <p>The string module contains a Template class that offers yet another way to substitute values into strings, using
+      placeholders like $x and replacing them with values from a dictionary, but offers much less control of the
+      formatting.</p>
+  </section>
+
+  <section id="errors_and_exceptions" class="main-section">
+    <header id="main_doc_header">
+      Errors and Exceptions
+    </header>
+
+    <h3>Syntax Errors</h3>
+
+    <p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are
+      still learning Python:</p>
+
+    <code>>>> while True print('Hello world')</br>
+      File "&lt;stdin&gt;", line 1</br>
+      while True print('Hello world')</br>
+      ^</br>
+      SyntaxError: invalid syntax</code>
+
+    <p>The parser repeats the offending line and displays a little ‘arrow’ pointing at the earliest point in the line
+      where the error was detected. The error is caused by (or at least detected at) the token preceding the arrow: in
+      the example, the error is detected at the function <code>print()</code>, since a colon ('<code>:</code>') is
+      missing before it. File name and line number are printed so you know where to look in case the input came from a
+      script.</p>
+
+    <h3>Exceptions</h3>
+
+
+    <p>Even if a statement or expression is syntactically correct, it may cause an error when an attempt is made to
+      execute it. Errors detected during execution are called exceptions and are not unconditionally fatal: you will
+      soon learn how to handle them in Python programs. Most exceptions are not handled by programs, however, and result
+      in error messages as shown here:</p>
+
+    <code>>>> 10 * (1/0)</br>
+      Traceback (most recent call last):</br>
+      File "&lt;stdin&gt;", line 1, in &lt;module&gt;</br>
+      ZeroDivisionError: division by zero</br>
+      >>> 4 + spam*3</br>
+      Traceback (most recent call last):</br>
+      File "&lt;stdin&gt;", line 1, in &lt;module&gt;</br>
+      NameError: name 'spam' is not defined</br>
+      >>> '2' + 2</br>
+      Traceback (most recent call last):</br>
+      File "&lt;stdin&gt;", line 1, in &lt;module&gt;</br>
+      TypeError: Can't convert 'int' object to str implicitly</code>
+
+    <p>The last line of the error message indicates what happened. Exceptions come in different types, and the type is
+      printed as part of the message: the types in the example are <code>ZeroDivisionError</code>,
+      <code>NameError</code> and <code>TypeError</code>. The string printed as the exception type is the name of the
+      built-in exception that occurred. This is true for all built-in exceptions, but need not be true for user-defined
+      exceptions (although it is a useful convention). Standard exception names are built-in identifiers (not reserved
+      keywords).</p>
+
+    <p>The rest of the line provides detail based on the type of exception and what caused it.</p>
+
+    <p>The preceding part of the error message shows the context where the exception happened, in the form of a stack
+      traceback. In general it contains a stack traceback listing source lines; however, it will not display lines read
+      from standard input.</p>
+  </section>
+
+  <section id="classes" class="main-section">
+    <header id="main_doc_header">
+      Classes
+    </header>
+
+    <h3>Scopes and Namespaces Example</h3>
+
+    <p>This is an example demonstrating how to reference the different scopes and namespaces, and how global and
+      nonlocal affect variable binding:</p>
+
+    <code>def scope_test():</br>
+      def do_local():</br>
+      spam = "local spam"</br>
+      </br>
+      def do_nonlocal():</br>
+      nonlocal spam</br>
+      spam = "nonlocal spam"</br>
+      </br>
+      def do_global():</br>
+      global spam</br>
+      spam = "global spam"</br>
+      </br>
+      spam = "test spam"</br>
+      do_local()</br>
+      print("After local assignment:", spam)</br>
+      do_nonlocal()</br>
+      print("After nonlocal assignment:", spam)</br>
+      do_global()</br>
+      print("After global assignment:", spam)</br>
+      </br>
+      scope_test()</br>
+      print("In global scope:", spam)</code>
+
+    <p>The output of the example code is:</p>
+
+    <code>After local assignment: test spam</br>
+      After nonlocal assignment: nonlocal spam</br>
+      After global assignment: nonlocal spam</br>
+      In global scope: global spam</code>
+
+    <p>Note how the local assignment (which is default) didn’t change scope_test’s binding of spam. The
+      <code>nonlocal</code> assignment changed scope_test’s binding of spam, and the <code>global</code> assignment
+      changed the module-level binding.</p>
+
+    <p>You can also see that there was no previous binding for <code>spam</code> before the global assignment.</p>
+
+    <h3>Class Definition Syntax</h3>
+
+    <p>The simplest form of class definition looks like this:</p>
+
+    <code>class ClassName:
+      &lt;statement-1&gt;
+      .
+      .
+      .
+      &lt;statement-N&gt;</code>
+    <p>Class definitions, like function definitions (def statements) must be executed before they have any effect. (You
+      could conceivably place a class definition in a branch of an if statement, or inside a function.)</p>
+
+    <p>In practice, the statements inside a class definition will usually be function definitions, but other statements
+      are allowed, and sometimes useful. The function definitions inside a class normally have a peculiar form of
+      argument list, dictated by the calling conventions for methods — again, this is explained later.</p>
+
+    <p>When a class definition is entered, a new namespace is created, and used as the local scope — thus, all
+      assignments to local variables go into this new namespace. In particular, function definitions bind the name of
+      the new function here.</p>
+
+    <p>When a class definition is left normally (via the end), a class object is created. This is basically a wrapper
+      around the contents of the namespace created by the class definition; we’ll learn more about class objects in the
+      next section. The original local scope (the one in effect just before the class definition was entered) is
+      reinstated, and the class object is bound here to the class name given in the class definition header
+      (<code>ClassName</code> in the example).</p>
+  </section>
+
+  <section id="tour_of_standard_library" class="main-section">
+    <header id="main_doc_header">
+      Tour of Standard Library
+    </header>
+
+    <h3>Operating System Interface</h3>
+
+    <p>The <code>os</code> module provides dozens of functions for interacting with the operating system:</p>
+
+    <code>>>> import os</br>
+      >>> os.getcwd() # Return the current working directory</br>
+      'C:\\Python37'</br>
+      >>> os.chdir('/server/accesslogs') # Change current working directory</br>
+      >>> os.system('mkdir today') # Run the command mkdir in the system shell</br>
+      0</code>
+
+    <p>Be sure to use the <code>import os</code> style instead of <code>from os import *</code>. This will keep
+      <code>os.open()</code> from shadowing the built-in <code>open()</code> function which operates much differently.
+    </p>
+
+    <p>The built-in <code>dir()</code> and <code>help()</code> functions are useful as interactive aids for working with
+      large modules like os:</p>
+
+    <code>>>> import os</br>
+      >>> dir(os)</br>
+      &lt;returns a list of all module functions&gt;</br>
+      >>> help(os)</br>
+      &lt;returns an extensive manual page created from the module's docstrings&gt;</code>
+
+    <p>For daily file and directory management tasks, the <code>shutil</code> module provides a higher level interface
+      that is easier to use:</p>
+
+    <code>>>> import shutil</br>
+      >>> shutil.copyfile('data.db', 'archive.db')</br>
+      'archive.db'</br>
+      >>> shutil.move('/build/executables', 'installdir')</br>
+      'installdir'</code>
+
+    <h3>File Wildcards</h3>
+
+    <p>The <code>glob</code> module provides a function for making file lists from directory wildcard searches:</p>
+
+    <code>>>> import glob</br>
+      >>> glob.glob('*.py')</br>
+      ['primes.py', 'random.py', 'quote.py']</code>
+
+    <h3>Command Line Arguments</h3>
+
+    <p>Common utility scripts often need to process command line arguments. These arguments are stored in the sys
+      module’s argv attribute as a list. For instance the following output results from running python
+      <code>demo.py</code> one two three at the command line:</p>
+
+    <code>>>> import sys</br>
+      >>> print(sys.argv)</br>
+      ['demo.py', 'one', 'two', 'three']</code>
+
+    <p>The <code>getopt</code> module processes <code>sys.argv</code> using the conventions of the Unix
+      <code>getopt()</code> function. More powerful and flexible command line processing is provided by the argparse
+      module.</p>
+  </section>
+
+  <section id="tour_of_standard_library_part_ii" class="main-section">
+    <header id="main_doc_header">
+      Tour of Standard Library Part II
+    </header>
+
+    <h3>Output Formatting</h3>
+
+    <p>The <code>reprlib</code> module provides a version of <code>repr()</code> customized for abbreviated displays of
+      large or deeply nested containers:</p>
+
+    <code>>>> import reprlib</br>
+      >>> reprlib.repr(set('supercalifragilisticexpialidocious'))</br>
+      "{'a', 'c', 'd', 'e', 'f', 'g', ...}"</code>
+
+    <p>The <code>pprint</code> module offers more sophisticated control over printing both built-in and user defined
+      objects in a way that is readable by the interpreter. When the result is longer than one line, the “pretty
+      printer” adds line breaks and indentation to more clearly reveal data structure:</p>
+
+    <code>>>> import pprint</br>
+      >>> t = [[[['black', 'cyan'], 'white', ['green', 'red']], [['magenta',</br>
+      ... 'yellow'], 'blue']]]</br>
+      ...</br>
+      >>> pprint.pprint(t, width=30)</br>
+      [[[['black', 'cyan'],</br>
+      'white',</br>
+      ['green', 'red']],</br>
+      [['magenta', 'yellow'],</br>
+      'blue']]]</code>
+
+
+    <p>The textwrap module formats paragraphs of text to fit a given screen width:<p>
+
+        <code>>>> import textwrap</br>
+          >>> doc = """The wrap() method is just like fill() except that it returns</br>
+          ... a list of strings instead of one big string with newlines to separate</br>
+          ... the wrapped lines."""</br>
+          ...</br>
+          >>> print(textwrap.fill(doc, width=40))</br>
+          The wrap() method is just like fill()</br>
+          except that it returns a list of strings</br>
+          instead of one big string with newlines</br>
+          to separate the wrapped lines.</code>
+
+        <p>The <code>locale</code> module accesses a database of culture specific data formats. The grouping attribute
+          of locale’s format function provides a direct way of formatting numbers with group separators:</p>
+
+        <code>>>> import locale</br>
+          >>> locale.setlocale(locale.LC_ALL, 'English_United States.1252')</br>
+          'English_United States.1252'</br>
+          >>> conv = locale.localeconv() # get a mapping of conventions</br>
+          >>> x = 1234567.8</br>
+          >>> locale.format("%d", x, grouping=True)</br>
+          '1,234,567'</br>
+          >>> locale.format_string("%s%.*f", (conv['currency_symbol'],</br>
+          ... conv['frac_digits'], x), grouping=True)</br>
+          '$1,234,567.80'</code>
+  </section>
+
+  <section id="virtual_environments_and_packages" class="main-section">
+    <header id="main_doc_header">
+      Virtual Environments and Packages
+    </header>
+
+    <h3>Introduction</h3>
+
+    <p>Python applications will often use packages and modules that don’t come as part of the standard library.
+      Applications will sometimes need a specific version of a library, because the application may require that a
+      particular bug has been fixed or the application may be written using an obsolete version of the library’s
+      interface.</p>
+
+    <p>This means it may not be possible for one Python installation to meet the requirements of every application. If
+      application A needs version 1.0 of a particular module but application B needs version 2.0, then the requirements
+      are in conflict and installing either version 1.0 or 2.0 will leave one application unable to run.</p>
+
+    <p>The solution for this problem is to create a virtual environment, a self-contained directory tree that contains a
+      Python installation for a particular version of Python, plus a number of additional packages.</p>
+
+    <p>Different applications can then use different virtual environments. To resolve the earlier example of conflicting
+      requirements, application A can have its own virtual environment with version 1.0 installed while application B
+      has another virtual environment with version 2.0. If application B requires a library be upgraded to version 3.0,
+      this will not affect application A’s environment.</p>
+
+    <h3>Creating Virtual Environments</h3>
+
+    <p>The module used to create and manage virtual environments is called <code>venv</code>. <code>venv</code> will
+      usually install the most recent version of Python that you have available. If you have multiple versions of Python
+      on your system, you can select a specific Python version by running python3 or whichever version you want.</p>
+
+    <p>To create a virtual environment, decide upon a directory where you want to place it, and run the
+      <code>venv</code> module as a script with the directory path:</p>
+    <code>python3 -m venv tutorial-env</code>
+
+    <p>This will create the tutorial-env directory if it doesn’t exist, and also create directories inside it containing
+      a copy of the Python interpreter, the standard library, and various supporting files.</p>
+
+    <p>Once you’ve created a virtual environment, you may activate it.</p>
+
+    <p>On Windows, run:</p>
+
+    <code>tutorial-env\Scripts\activate.bat</code>
+
+    <p>On Unix or MacOS, run:</p>
+
+    <code>source tutorial-env/bin/activate</code>
+
+    <p>(This script is written for the bash shell. If you use the csh or fish shells, there are alternate
+      <code>activate.csh</code> and <code>activate.fish</code> scripts you should use instead.)
+
+      Activating the virtual environment will change your shell’s prompt to show what virtual environment you’re using,
+      and modify the environment so that running python will get you that particular version and installation of Python.
+      For example:</p>
+
+    <code>$ source ~/envs/tutorial-env/bin/activate</br>
+      (tutorial-env) $ python</br>
+      Python 3.5.1 (default, May 6 2016, 10:59:36)</br>
+      ...</br>
+      >>> import sys</br>
+      >>> sys.path</br>
+      ['', '/usr/local/lib/python35.zip', ...,</br>
+      '~/envs/tutorial-env/lib/python3.5/site-packages']</br>
+      >>></code>
+
+  </section>
+
+  <section id="what_now?" class="main-section">
+    <header id="main_doc_header">
+      What Now?
+    </header>
+    <p>Reading this tutorial has probably reinforced your interest in using Python — you should be eager to apply Python
+      to solving your real-world problems. Where should you go to learn more?</p>
+
+    <p>This tutorial is part of Python’s documentation set. Some other documents in the set are:</p>
+
+    <p>The Python Standard Library:</p>
+
+    <p>You should browse through this manual, which gives complete (though terse) reference material about types,
+      functions, and the modules in the standard library. The standard Python distribution includes a lot of additional
+      code. There are modules to read Unix mailboxes, retrieve documents via HTTP, generate random numbers, parse
+      command-line options, write CGI programs, compress data, and many other tasks. Skimming through the Library
+      Reference will give you an idea of what’s available.</p>
+
+    <p>Installing Python Modules explains how to install additional modules written by other Python users.</p>
+
+    <p>The Python Language Reference: A detailed explanation of Python’s syntax and semantics. It’s heavy reading, but
+      is useful as a complete guide to the language itself.</p>
+
+    <p>More Python resources:</p>
+
+    <p><a href="https://www.python.org">https://www.python.org</a>: The major Python Web site. It contains code,
+      documentation, and pointers to Python-related pages around the Web. This Web site is mirrored in various places
+      around the world, such as Europe, Japan, and Australia; a mirror may be faster than the main site, depending on
+      your geographical location.
+      <a href="https://docs.python.org">https://docs.python.org</a>: Fast access to Python’s documentation.
+      <a href="https://pypi.org">https://pypi.org</a>: The Python Package Index, previously also nicknamed the Cheese
+      Shop, is an index of user-created Python modules that are available for download. Once you begin releasing code,
+      you can register it here so that others can find it.
+      <a
+        href="https://code.activestate.com/recipes/langs/python/">https://code.activestate.com/recipes/langs/python/</a>:
+      The Python Cookbook is a sizable collection of code examples, larger modules, and useful scripts. Particularly
+      notable contributions are collected in a book also titled Python Cookbook (O’Reilly & Associates, ISBN
+      0-596-00797-3.)
+      <a href="http://www.pyvideo.org">http://www.pyvideo.org</a> collects links to Python-related videos from
+      conferences and user-group meetings.
+      <a href="https://scipy.org">https://scipy.org</a>: The Scientific Python project includes modules for fast array
+      computations and manipulations plus a host of packages for such things as linear algebra, Fourier transforms,
+      non-linear solvers, random number distributions, statistical analysis and the like.
+      For Python-related questions and problem reports, you can post to the newsgroup comp.lang.python, or send them to
+      the mailing list at python-list@python.org. The newsgroup and mailing list are gatewayed, so messages posted to
+      one will automatically be forwarded to the other. There are hundreds of postings a day, asking (and answering)
+      questions, suggesting new features, and announcing new modules. Mailing list archives are available at <a
+        href="https://mail.python.org/pipermail/" .>https://mail.python.org/pipermail/</a>
+
+      Before posting, be sure to check the list of Frequently Asked Questions (also called the FAQ). The FAQ answers
+      many of the questions that come up again and again, and may already contain the solution for your problem.
+  </section>
+
+  <footer>Note: all content is provided by the official Python documentation at <a
+      href="https://docs.python.org">docs.python.org</a>. This page designed and built by Josh Henderson.</footer>
+</main>

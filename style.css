@@ -1,0 +1,488 @@
+@import url('https://fonts.googleapis.com/css?family=Noticia+Text');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noticia Text', serif;
+}
+
+@keyframes shutter {
+  0% {
+    background: transparent;
+  }
+
+  100% {
+    background-color: black;
+  }
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+  .picture {
+    width: 48vh;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0px;
+  }
+}
+
+/* ----------- Google Pixel ----------- */
+
+/* Portrait and Landscape */
+@media screen and (device-width: 320px) and (device-height: 800px) and (-webkit-device-pixel-ratio: 3) {
+  .imgContainer {
+    width: 1px;
+    margin: 0;
+  }
+}
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+#corpPortrait {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 250px;
+  width: 200px;
+  z-index: 10;
+}
+
+#selfPortrait {
+  margin-left: auto;
+  margin-right: auto;
+  height: 350px;
+  width: 350px;
+  filter: brightness(85%);
+}
+
+h1 {
+  letter-spacing: 0.04em;
+}
+
+.landing {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.landing video {
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  object-fit: fill;
+  filter: brightness(30%);
+  margin: 0;
+}
+
+.landing h2 {
+  font-size: 4.0em;
+  font-weight: normal;
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  color: white;
+}
+
+img {
+  margin-top: 20px;
+  transition: transform .2s;
+}
+
+img:hover {
+  transform: scale(1.08);
+}
+
+nav {
+  width: 80%;
+  margin: 0 auto;
+  margin-left: 10%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 25px;
+}
+
+.navButton {
+  height: 100%;
+  width: 30%;
+  font-size: 1.3em;
+  margin-left: 1.5%;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  transition: transform .2s;
+}
+
+.navButton:hover {
+  cursor: pointer;
+  animation-name: shutter;
+  animation-duration: 0.5s;
+  transform: scale(1.1);
+  background-color: black;
+}
+
+a {
+  color: white;
+}
+
+.workHeader {
+  height: 40px;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  background-color: #111111;
+  color: #f5f5f5;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.work {
+  height: 55em;
+  width: 80%;
+}
+
+.sectionHeader {
+  font-weight: bold;
+  padding-left: 1%;
+  font-size: 35px;
+  height: 30px;
+}
+
+.sectionSub {
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.about {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('images/desert-photo.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: auto;
+  text-align: center;
+  color: white;
+}
+
+.about p {
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  padding-bottom: 5%;
+  padding-top: 5%;
+  font-size: 25px;
+}
+
+.about #button4 {
+  padding: 1%;
+  margin-bottom: 100px;
+}
+
+.about i {
+  font-size: 80px;
+  color: white;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  transform: scale(1);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.about i:hover {
+  transform: scale(1.5);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.picture {
+  height: 18em;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0px;
+}
+
+.imgHolder {
+  position: relative;
+}
+
+.imgHolder span {
+  position: absolute;
+  top: 10px;
+}
+
+/* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.popup .popuptext {
+  display: none;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  margin-left: -30px;
+  margin-bottom: 10px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: relative;
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  top: 40px;
+  left: 50px;
+  border-color: #555 transparent transparent transparent;
+}
+
+section.gallery {
+  background-color: #f5f5f5;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('images/oly-boats.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
+  padding: 20px;
+}
+
+.imgContainer {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  margin: 5px;
+}
+
+
+#return-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  width: 50px;
+  height: 50px;
+  display: block;
+  text-decoration: none;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  border-radius: 35px;
+
+}
+
+#return-to-top i {
+  color: #fff;
+  margin: 0;
+  position: relative;
+  left: 16px;
+  top: 13px;
+  font-size: 19px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+#return-to-top:hover {
+  background: rgba(0, 0, 0, 0.9);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+#return-to-top:hover i {
+  color: #e4e4e4;
+  top: 5px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  transition: all 0.3s;
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 50px;
+}
+
+h3 i {
+  color: #444;
+}
+
+#contactSection {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('images/optic-morning.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+#styledForm {
+  margin: auto;
+  width: 55%;
+  opacity: 0.9;
+}
+
+/* Style inputs, select elements and textareas */
+input[type=text],
+select,
+textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: block;
+  clear: both;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #f4710f;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  transition: transform .2s;
+  /* Animation */
+  letter-spacing: 0.15em;
+  font-size: 17px;
+}
+
+input[type=submit]:hover {
+  background-color: #d3631c;
+  transform: scale(1.02);
+}
+
+/* Style the container */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+  .col-25,
+  .col-75,
+  input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+footer {
+  background-color: black;
+  color: white;
+}
+
+.footerInfo {
+  padding-top: 3.5%;
+  padding-bottom: 3.5%;
+  padding-left: 4.2%;
+  padding-right: 4.2%;
+  font-size: 1.2em;
+  text-align: center;
+  padding-top: 3.5%;
+  padding-bottom: 3.5%;
+  font-size: 1.2em;
+  background-color: #111111;
+}
+
+
+.footerLogos {
+  background-color: #111111;
+  text-align: center;
+}
+
+.footerLogos i {
+  font-size: 50px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  transform: scale(1);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.footerLogos i:hover {
+  transform: scale(1.5);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}

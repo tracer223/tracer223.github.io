@@ -1,0 +1,84 @@
+html {
+  background: black;
+}
+
+header {
+  color: white;
+  background-color: black;
+  font-size: 32px;
+  margin: 0 auto;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  font-family: 'Roboto Slab', serif;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-image: url('img/cloudy_sky.jpg');
+  background-size: cover;
+  margin: 0 auto;
+}
+  
+  .jumbotron {
+    font-family: 'Roboto Slab', serif;
+    width: 100%;
+    height: 65vh;
+    color: white;
+    text-shadow: black 0.2em 0.2em 0.2em;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  button {
+      background-color: black;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      transition: 0.2s;
+      margin: 0 auto;
+  }
+
+  button:hover {
+    cursor: pointer;
+    padding: 20px 40px;
+  }
+
+  #icon-position {
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px;
+  }
+
+  #icon-position i {
+    padding-left: 5vh;
+  }
+
+  footer {
+    left: 0px;
+    bottom: 0px;
+    height: 20vh;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Roboto Slab', serif;
+    color: white;
+    background: black;
+  }
+
+   footer i {
+    font-size: 30px;
+    padding: 15px 15px;
+    transition: 0.3s;
+  }
+
+  footer i:hover {
+    cursor: pointer;
+    font-size: 40px;
+  }

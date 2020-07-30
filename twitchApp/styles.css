@@ -1,0 +1,39 @@
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    from {color: white;}
+    to {color: pink;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    from {color: white;}
+    to {color: red;}
+}
+
+body {
+  background-image: url("https://qmosfq.by3302.livefilestore.com/y4maOFJWzMKn0WTCTlOGHWTGrGlGrwGvKrD1YIw1hkbAqAhPP_yXJYy8hm4lDeobSiZGGVcmVzgeXoY6q78CiUWDXdeo_legixZSB6GFwKviHGtF0noX_-9-2PIRfWam5euFXsFb02Na8UIPQu0-KoU_JObdrIkjyBPo6vAbX3PM3TGP5XUzqDtAVe1asNKgzqzYJaHCO743Kqd0XJt7pJpUA?width=4608&height=3456&cropmode=none");
+  background-repeat: no-repeat;
+  background-size: 3000px 3000px;
+  background-color: black;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+}
+
+h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+}
+
+a {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+}
+
+a:hover {
+  color: red;
+  animation-name: example;
+    animation-duration: 0.2s;
+}
